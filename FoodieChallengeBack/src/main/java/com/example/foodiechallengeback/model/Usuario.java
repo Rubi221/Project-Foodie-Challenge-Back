@@ -1,2 +1,4 @@
-package com.example.foodiechallengeback.model;public class Usuario {
+package com.example.foodiechallengeback.model;
+
+public class Usuario {
 }
