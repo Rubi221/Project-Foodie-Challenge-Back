@@ -1,4 +1,25 @@
 package com.example.foodiechallengeback.repository;
 
-public interface IUsuarioRepository {
+import com.example.foodiechallengeback.model.Usuario;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+/**
+ * Repositorio para la tabla Usuario
+ * @author Rubi Utima
+ */
+@Repository
+public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
+
+    @Query("SELECT u " +
+            "FROM Usuario u " +
+            "WHERE u.username = :username ")
+    Usuario validateUsuarioRepetido (String username);
+
+    @Query("SELECT u " +
+            "FROM Usuario u " +
+            "WHERE u.username = :username " +
+            "AND u.contrasena = :contrasena ")
+    Usuario validateUsuarioLogin (String username, String contrasena);
 }
