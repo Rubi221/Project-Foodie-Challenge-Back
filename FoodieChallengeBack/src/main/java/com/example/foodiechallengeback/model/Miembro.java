@@ -18,6 +18,9 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 @Table(name = "miembro")
 public class Miembro {
+
+    //Atributos
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")

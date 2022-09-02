@@ -21,14 +21,15 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/reto")
 public class RetoController {
-
     private IRetoService retoService;
 
+    // Obtiene la lista de retos abiertos
     @GetMapping("/abiertos")
     public ResponseEntity<List<RetoDTO>> obtenerRetosAbiertos(){
         return new ResponseEntity<>(this.retoService.obtenerRetosAbiertos().stream().map(RetoMapper.INSTANCE::toRetoDTO).collect(Collectors.toList()), HttpStatus.OK);
     }
 
+    //Crea un nuevo reto
     @PostMapping
     public ResponseEntity<?> createReto(@Validated @RequestBody RetoDTO retoDTO){
         try{
@@ -37,7 +38,6 @@ public class RetoController {
             return new ResponseEntity<>("Las fechas ingresadas son invalidas", HttpStatus.CREATED);
         }
     }
-
 
     //Inyecciones
     @Autowired

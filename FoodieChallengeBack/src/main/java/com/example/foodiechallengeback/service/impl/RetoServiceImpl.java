@@ -18,14 +18,15 @@ import java.util.List;
  */
 @Service
 public class RetoServiceImpl implements IRetoService {
-
     private IRetoRepository retoRepository;
 
+    // Obtiene la lista de retos abiertos
     @Override
     public List<Reto> obtenerRetosAbiertos(){
         return this.retoRepository.findAllAbiertas();
     }
 
+    //Crea un nuevo reto
     @Override
     @Transactional
     public Reto createReto(RetoDTO retoDTO) throws Exception {
@@ -34,6 +35,7 @@ public class RetoServiceImpl implements IRetoService {
         return this.retoRepository.save(reto);
     }
 
+    //Valida las fechas ingresadas para creacion de un reto
     private void validateFechas(Reto reto) throws Exception {
         Long dias = ((reto.getFechaFin().getTime() - reto.getFechaInicio().getTime())/86400000L);
         if(reto.getFechaInicio().before(new Date())){

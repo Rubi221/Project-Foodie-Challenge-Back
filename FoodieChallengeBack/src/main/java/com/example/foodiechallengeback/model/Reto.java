@@ -19,6 +19,9 @@ import java.util.Date;
 @RequiredArgsConstructor
 @Table(name = "reto")
 public class Reto {
+
+    //Atributos
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")

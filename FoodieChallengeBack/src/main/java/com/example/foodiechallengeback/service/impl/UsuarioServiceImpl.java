@@ -22,15 +22,17 @@ import java.util.List;
  */
 @Service
 public class UsuarioServiceImpl implements IUsuarioService {
-
     private IUsuarioRepository usuarioRepository;
     private IChefRepository chefRepository;
     private IMiembroRepository miembroRepository;
+
+    //Obtiene la lista de todos los usuarios
     @Override
     public List<Usuario> findAllUsuario(){
         return this.usuarioRepository.findAll();
     }
 
+    //Hace el registro de un nuevo usuario
     @Override
     @Transactional
     public Usuario createUsuario(UsuarioDTO usuarioDTO, Long tipoUsuario, String especialidad) throws Exception {
@@ -52,6 +54,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
         return usuarioBD;
     }
 
+    //Valida los datos de un usuario para realizar inicio de sesion
     @Override
     public Boolean validateUsuario(UsuarioDTO usuarioDTO){
         var login = this.usuarioRepository.validateUsuarioLogin(usuarioDTO.getUsername(), usuarioDTO.getContrasena());
@@ -64,6 +67,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
         return valid;
     }
 
+    //Elimina un usuario
     @Override
     @Transactional
     public void deleteUsuario(Long aId) {
@@ -71,6 +75,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
         this.usuarioRepository.deleteById(usuarioBD.getId());
     }
 
+    //Valida que el username ingresado no este en uso
     private void validateUsuarioRepetido(Usuario usuario) throws Exception {
         var registro = this.usuarioRepository.validateUsuarioRepetido(usuario.getUsername());
         if (registro != null) {
@@ -91,5 +96,4 @@ public class UsuarioServiceImpl implements IUsuarioService {
     public void setMiembroRepository(IMiembroRepository miembroRepository) {
         this.miembroRepository = miembroRepository;
     }
-
 }
