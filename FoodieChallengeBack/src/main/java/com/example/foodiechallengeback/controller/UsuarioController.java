@@ -32,7 +32,7 @@ public class UsuarioController {
     public ResponseEntity<?> createUsuario(@Validated  @RequestBody UsuarioDTO usuarioDTO,
                                                     @RequestParam (name = "tipoUsuario")Long tipoUsuario,
                                                     @RequestParam (name = "especialidad")String especialidad){
-        try {
+        try{
             return new ResponseEntity<>(UsuarioMapper.INSTANCE.toUsuarioDTO(this.usuarioService.createUsuario(usuarioDTO, tipoUsuario, especialidad)), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>("Este nombre de usuario ya esta en uso", HttpStatus.CREATED);
@@ -51,6 +51,7 @@ public class UsuarioController {
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
+    //Inyecciones
     @Autowired
     public void setUsuarioService(IUsuarioService usuarioService) {
         this.usuarioService = usuarioService;
