@@ -1,5 +1,6 @@
 package com.example.foodiechallengeback.controller;
 
+import com.example.foodiechallengeback.dto.InscritoRetoDTO;
 import com.example.foodiechallengeback.dto.RetoDTO;
 import com.example.foodiechallengeback.mapper.RetoMapper;
 import com.example.foodiechallengeback.service.interfaces.IRetoService;
@@ -23,10 +24,23 @@ import java.util.stream.Collectors;
 public class RetoController {
     private IRetoService retoService;
 
+    // Obtiene un reto dado un idReto y un idUsuario
+    @GetMapping("/inscrito")
+    public ResponseEntity<InscritoRetoDTO> obtenerRetoById(@RequestParam(name = "idReto")Long idReto,
+                                                         @RequestParam(name = "idUsuario")Long idUsuario){
+        return new ResponseEntity<>(this.retoService.obtenerRetoById(idReto, idUsuario), HttpStatus.OK);
+    }
+
     // Obtiene la lista de retos abiertos
     @GetMapping("/abiertos")
     public ResponseEntity<List<RetoDTO>> obtenerRetosAbiertos(){
         return new ResponseEntity<>(this.retoService.obtenerRetosAbiertos().stream().map(RetoMapper.INSTANCE::toRetoDTO).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    // Obtiene la lista de retos abiertos e inscritos dado un usuario
+    @GetMapping("/abiertosInscrito")
+    public ResponseEntity<List<InscritoRetoDTO>> obtenerRetosAbiertosInscrito(@RequestParam(name="idUsuario")Long idUsuario){
+        return new ResponseEntity<>(this.retoService.obtenerRetosAbiertosInscrito(idUsuario), HttpStatus.OK);
     }
 
     //Crea un nuevo reto

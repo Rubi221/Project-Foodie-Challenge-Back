@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface IMiembroRepository extends JpaRepository<Miembro, Long> {
+
+    Miembro findByIdUsuario(Long idUsuario);
 }

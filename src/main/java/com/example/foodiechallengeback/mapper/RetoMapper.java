@@ -1,6 +1,8 @@
 package com.example.foodiechallengeback.mapper;
 
+import com.example.foodiechallengeback.dto.InscritoRetoDTO;
 import com.example.foodiechallengeback.dto.RetoDTO;
+import com.example.foodiechallengeback.model.InscripcionReto;
 import com.example.foodiechallengeback.model.Reto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -19,6 +21,11 @@ public interface RetoMapper {
     @Mapping(target = "nombreChef", source = "chef.usuario.nombre")
     @Mapping(target = "nombreCategoria", source = "categoria.nombre")
     RetoDTO toRetoDTO(Reto reto);
+
+    @Mapping(target = "nombreChef", source = "chef.usuario.nombre")
+    @Mapping(target = "nombreCategoria", source = "categoria.nombre")
+    InscritoRetoDTO toInscritoRetoDTO(Reto reto);
+
 
     //DTO to Entity
 

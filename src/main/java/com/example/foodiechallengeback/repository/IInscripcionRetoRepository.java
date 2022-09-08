@@ -20,4 +20,6 @@ public interface IInscripcionRetoRepository extends JpaRepository<InscripcionRet
     InscripcionReto findInscripcion(Long idReto, Long idMiembro);
 
     List<InscripcionReto> findAllByIdReto(Long idReto);
+
+    List<InscripcionReto> findInscripcionRetoByIdMiembro(Long idMiembro);
 }

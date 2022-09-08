@@ -1,5 +1,6 @@
 package com.example.foodiechallengeback.service.interfaces;
 
+import com.example.foodiechallengeback.dto.InscritoRetoDTO;
 import com.example.foodiechallengeback.dto.RetoDTO;
 import com.example.foodiechallengeback.model.Reto;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,13 @@ import java.util.List;
  */
 @Service
 public interface IRetoService {
+    // Obtiene un reto dado un idReto y un idUsuario
+    InscritoRetoDTO obtenerRetoById(Long idReto, Long idUsuario);
+
     List<Reto> obtenerRetosAbiertos();
+
+    // Obtiene la lista de retos abiertos e inscritos dado un usuario
+    List<InscritoRetoDTO> obtenerRetosAbiertosInscrito(Long idUsuario);
 
     @Transactional
     Reto createReto(RetoDTO retoDTO) throws Exception;
