@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Data
 @RequiredArgsConstructor
-@Table(name = "mensajes")
+@Table(name = "Mensaje_Foro")
 public class Mensaje {
 
     //Atributos
@@ -23,6 +23,9 @@ public class Mensaje {
     @Temporal(TemporalType.DATE)
     private Date fecha;
 
-    @Column(name = "contenido")
+    @Column(name = "Contenido")
     private String contenido;
+
+    @Column(name = "IdPadre")
+    private Long idPadre;
 }
