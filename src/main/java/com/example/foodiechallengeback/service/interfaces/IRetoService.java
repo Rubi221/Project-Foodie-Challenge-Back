@@ -2,6 +2,7 @@ package com.example.foodiechallengeback.service.interfaces;
 
 import com.example.foodiechallengeback.dto.InscritoRetoDTO;
 import com.example.foodiechallengeback.dto.RetoDTO;
+import com.example.foodiechallengeback.model.Chef;
 import com.example.foodiechallengeback.model.Reto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,9 @@ import java.util.List;
  */
 @Service
 public interface IRetoService {
+    //Obtiene el usuario que crea un reto
+    Chef obtenerAutorReto(Long idReto);
+
     // Obtiene un reto dado un idReto y un idUsuario
     InscritoRetoDTO obtenerRetoById(Long idReto, Long idUsuario);
 
@@ -24,4 +28,8 @@ public interface IRetoService {
 
     @Transactional
     Reto createReto(RetoDTO retoDTO) throws Exception;
+
+    //Actualiza un nuevo reto
+    @Transactional
+    Reto updateReto(RetoDTO retoDTO) throws Exception;
 }

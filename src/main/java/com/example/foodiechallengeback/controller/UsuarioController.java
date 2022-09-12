@@ -2,6 +2,7 @@ package com.example.foodiechallengeback.controller;
 
 import com.example.foodiechallengeback.dto.UsuarioDTO;
 import com.example.foodiechallengeback.mapper.UsuarioMapper;
+import com.example.foodiechallengeback.model.Usuario;
 import com.example.foodiechallengeback.service.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,9 +44,9 @@ public class UsuarioController {
 
     //Valida los datos de un usuario para realizar inicio de sesion
     @PostMapping("/validateLogin")
-    public ResponseEntity<Boolean> validateUsuario(@Validated  @RequestBody UsuarioDTO usuarioDTO){
+    public ResponseEntity<UsuarioDTO> validateUsuario(@Validated  @RequestBody UsuarioDTO usuarioDTO){
         var valid = this.usuarioService.validateUsuario(usuarioDTO);
-        return new ResponseEntity<>(valid, HttpStatus.OK);
+        return new ResponseEntity<>(UsuarioMapper.INSTANCE.toUsuarioDTO(valid), HttpStatus.OK);
     }
 
     //Elimina un usuario por Id

@@ -18,7 +18,7 @@ public interface IUsuarioService {
     @Transactional
     Usuario createUsuario(UsuarioDTO usuarioDTO, Long tipoUsuario, String especialidad) throws Exception;
 
-    Boolean validateUsuario(UsuarioDTO usuarioDTO);
+    Usuario validateUsuario(UsuarioDTO usuarioDTO);
 
     @Transactional
     void deleteUsuario(Long aId);

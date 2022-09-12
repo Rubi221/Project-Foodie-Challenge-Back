@@ -1,8 +1,11 @@
 package com.example.foodiechallengeback.controller;
 
+import com.example.foodiechallengeback.dto.ChefDTO;
 import com.example.foodiechallengeback.dto.InscritoRetoDTO;
 import com.example.foodiechallengeback.dto.RetoDTO;
+import com.example.foodiechallengeback.mapper.ChefMapper;
 import com.example.foodiechallengeback.mapper.RetoMapper;
+import com.example.foodiechallengeback.model.Chef;
 import com.example.foodiechallengeback.service.interfaces.IRetoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +26,12 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/reto")
 public class RetoController {
     private IRetoService retoService;
+
+    //Obtiene el id del usuario que crea un reto
+    @GetMapping("/autor")
+    public ResponseEntity<ChefDTO> obtenerAutorReto(@RequestParam(name = "idReto")Long idReto){
+        return new ResponseEntity<>(ChefMapper.INSTANCE.toChefDTO(this.retoService.obtenerAutorReto(idReto)), HttpStatus.OK);
+    }
 
     // Obtiene un reto dado un idReto y un idUsuario
     @GetMapping("/inscrito")
@@ -50,6 +59,16 @@ public class RetoController {
             return new ResponseEntity<>(RetoMapper.INSTANCE.toRetoDTO(this.retoService.createReto(retoDTO)), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>("Las fechas ingresadas son invalidas", HttpStatus.CREATED);
+        }
+    }
+
+    //Actualiza un nuevo reto
+    @PutMapping
+    public ResponseEntity<?> updateReto(@Validated @RequestBody RetoDTO retoDTO){
+        try{
+            return new ResponseEntity<>(RetoMapper.INSTANCE.toRetoDTO(this.retoService.updateReto(retoDTO)), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>("No se pudo realizar la transaccion", HttpStatus.CREATED);
         }
     }
 

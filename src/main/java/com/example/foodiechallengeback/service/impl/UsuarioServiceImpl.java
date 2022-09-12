@@ -56,7 +56,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     //Valida los datos de un usuario para realizar inicio de sesion
     @Override
-    public Boolean validateUsuario(UsuarioDTO usuarioDTO){
+    public Usuario validateUsuario(UsuarioDTO usuarioDTO){
         var login = this.usuarioRepository.validateUsuarioLogin(usuarioDTO.getUsername(), usuarioDTO.getContrasena());
         Boolean valid;
         if(login == null){
@@ -64,7 +64,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
         }else{
             valid = true;
         }
-        return valid;
+        return login;
     }
 
     //Elimina un usuario
