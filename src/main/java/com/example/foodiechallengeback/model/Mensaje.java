@@ -1,5 +1,6 @@
 package com.example.foodiechallengeback.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -9,7 +10,7 @@ import java.util.Date;
 @Entity
 @Data
 @RequiredArgsConstructor
-@Table(name = "Mensaje_Foro")
+@Table(name = "Mensaje")
 public class Mensaje {
 
     //Atributos
@@ -18,6 +19,9 @@ public class Mensaje {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     private Long id;
+
+    @Column(name = "IdUsuario")
+    private Long idUsuario;
 
     @Column(name = "Fecha")
     @Temporal(TemporalType.DATE)
@@ -28,4 +32,22 @@ public class Mensaje {
 
     @Column(name = "IdPadre")
     private Long idPadre;
+
+    @Column(name = "IdPublicacion")
+    private Long idPublicacion;
+
+    @Column(name = "IdReto")
+    private Long idReto;
+
+    //Relaciones
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IdReto", insertable = false, updatable = false)
+    private Reto reto;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IdPublicacion", insertable = false, updatable = false)
+    private Publicacion publicacion;
 }

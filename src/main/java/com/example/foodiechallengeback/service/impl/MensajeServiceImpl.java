@@ -16,10 +16,16 @@ public class MensajeServiceImpl implements IMensajeService{
 
     private IMensajeRepository mensajeRepository;
 
-    //Obtiene la lista de todos los mensajes
+    //Obtiene la lista de todos los mensajes de una publicacion o reto
     @Override
-    public List<Mensaje> findAllMensaje(){
-        return this.mensajeRepository.findAll();
+    public List<Mensaje> findAllMensaje(Long idPublicacion, Long idReto){
+        return this.mensajeRepository.findAllByIdPubliacionOrIdReto(idPublicacion, idReto);
+    }
+
+    //Obtiene la lista de todos los mensajes hijos de un mensaje padre
+    @Override
+    public List<Mensaje> findAllMensajesHijos(Long idPadre){
+        return this.mensajeRepository.findAllByIdPadre(idPadre);
     }
 
     //Crea un mensaje
@@ -40,5 +46,7 @@ public class MensajeServiceImpl implements IMensajeService{
 
     //Inyecciones
     @Autowired
-    public void setMensajeRepository(IMensajeRepository mensajeRepository){this.mensajeRepository = mensajeRepository;}
+    public void setMensajeRepository(IMensajeRepository mensajeRepository){
+        this.mensajeRepository = mensajeRepository;
+    }
 }

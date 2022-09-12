@@ -19,10 +19,17 @@ public class MensajeController {
 
     private IMensajeService mensajeService;
 
-    //Obtiene la lista de todos los mensajes
-    @GetMapping("/all")
-    public ResponseEntity<List<MensajeDTO>> getAllMensajes(){
-        return new ResponseEntity<>(this.mensajeService.findAllMensaje().stream().map(MensajeMapper.INSTANCE::toMensajeDTO).collect(Collectors.toList()), HttpStatus.OK);
+    //Obtiene la lista de todos los mensajes de una publiacion o un reto
+    @GetMapping("/allByPublish")
+    public ResponseEntity<List<MensajeDTO>> getAllMensajesByPublish(@RequestParam(name = "idPublicacion", required = false)Long idPublicacion,
+                                                           @RequestParam(name = "idReto", required = false)Long idReto){
+        return new ResponseEntity<>(this.mensajeService.findAllMensaje(idPublicacion, idReto).stream().map(MensajeMapper.INSTANCE::toMensajeDTO).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    //Obtiene la lista de todos los mensajes hijos de un mensaje padre
+    @GetMapping("/allByIdPadre")
+    public ResponseEntity<List<MensajeDTO>> getAllMensajesHijos(@RequestParam(name = "idPadre")Long idPadre){
+        return new ResponseEntity<>(this.mensajeService.findAllMensajesHijos(idPadre).stream().map(MensajeMapper.INSTANCE::toMensajeDTO).collect(Collectors.toList()), HttpStatus.OK);
     }
 
 
