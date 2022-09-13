@@ -35,4 +35,6 @@ public class UsuarioDTO {
     private String nivelActividad;
 
     private Long idTipoUsuario;
+
+    private String nombreTipoUsuario;
 }

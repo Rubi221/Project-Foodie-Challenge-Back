@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/mensaje")
+@RequestMapping("/api/comentario")
 public class ComentarioController {
 
     private IComentarioService mensajeService;
