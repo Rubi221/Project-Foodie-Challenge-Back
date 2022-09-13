@@ -22,7 +22,7 @@ public class SigueChefServiceImpl implements ISigueChefService {
     //Crea un nuevo Seguidor
     @Override
     @Transactional
-    public SigueChef createSeguidor(@Validated @RequestBody SigueChefDTO sigueChefDTO){
+    public SigueChef createSeguidor(SigueChefDTO sigueChefDTO){
         var seguidor = SigueChefMapper.INSTANCE.toSigueChef(sigueChefDTO);
         return this.sigueChefRepository.save(seguidor);
     }
