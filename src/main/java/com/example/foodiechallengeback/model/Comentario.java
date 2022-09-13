@@ -10,8 +10,8 @@ import java.util.Date;
 @Entity
 @Data
 @RequiredArgsConstructor
-@Table(name = "Mensaje")
-public class Mensaje {
+@Table(name = "Comentario")
+public class Comentario {
 
     //Atributos
 

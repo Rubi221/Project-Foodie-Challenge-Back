@@ -11,7 +11,9 @@ import java.util.List;
 @Service
 public interface IPublicacionService {
 
-    List<Publicacion> findAllPublicacion();
+
+    //Obtiene una lista de publicaciones
+    List<Publicacion> findAllPublicacion(Long idSeccion, Long idUsuario);
 
     @Transactional
     Publicacion createPublicacion(PublicacionDTO publicacionDTO);

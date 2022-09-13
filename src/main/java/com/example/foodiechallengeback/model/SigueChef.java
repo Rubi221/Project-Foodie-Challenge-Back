@@ -20,11 +20,11 @@ public class SigueChef {
     @Column(name = "Id")
     private Long id;
 
-    @Column(name = "IdChef")
-    private Long idChef;
+    @Column(name = "IdUsuarioChef")
+    private Long idUsuarioChef;
 
-    @Column(name = "IdMiembro")
-    private Long idMiembro;
+    @Column(name = "IdUsuarioMiembro")
+    private Long idUsuarioMiembro;
 
     @Column(name = "Fecha")
     @Temporal(TemporalType.DATE)
@@ -34,11 +34,11 @@ public class SigueChef {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdChef", insertable = false, updatable = false)
-    private Chef chef;
+    @JoinColumn(name = "IdUsuarioChef", insertable = false, updatable = false)
+    private Usuario usuarioChef;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdMiembro", insertable = false, updatable = false)
-    private Miembro miembro;
+    @JoinColumn(name = "IdUsuarioMiembro", insertable = false, updatable = false)
+    private Usuario usuarioMiembro;
 }

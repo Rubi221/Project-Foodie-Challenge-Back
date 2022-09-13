@@ -1,11 +1,10 @@
 package com.example.foodiechallengeback.controller;
 
-import com.example.foodiechallengeback.dto.ChefDTO;
 import com.example.foodiechallengeback.dto.InscritoRetoDTO;
 import com.example.foodiechallengeback.dto.RetoDTO;
-import com.example.foodiechallengeback.mapper.ChefMapper;
+import com.example.foodiechallengeback.dto.UsuarioDTO;
 import com.example.foodiechallengeback.mapper.RetoMapper;
-import com.example.foodiechallengeback.model.Chef;
+import com.example.foodiechallengeback.mapper.UsuarioMapper;
 import com.example.foodiechallengeback.service.interfaces.IRetoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,8 +28,8 @@ public class RetoController {
 
     //Obtiene el id del usuario que crea un reto
     @GetMapping("/autor")
-    public ResponseEntity<ChefDTO> obtenerAutorReto(@RequestParam(name = "idReto")Long idReto){
-        return new ResponseEntity<>(ChefMapper.INSTANCE.toChefDTO(this.retoService.obtenerAutorReto(idReto)), HttpStatus.OK);
+    public ResponseEntity<UsuarioDTO> obtenerAutorReto(@RequestParam(name = "idReto")Long idReto) throws Exception {
+        return new ResponseEntity<>(UsuarioMapper.INSTANCE.toUsuarioDTO(this.retoService.obtenerAutorReto(idReto)), HttpStatus.OK);
     }
 
     // Obtiene un reto dado un idReto y un idUsuario

@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public interface ISigueChefService {
 
-    List<Long> findAllChef(Long aIdMiembro);
+    List<Long> findAllChef(Long idUsuarioMiembro);
 
-    List<Long> findAllMiembro(Long aIdChef);
+    List<Long> findAllMiembro(Long idUsuarioChef);
     @Transactional
     SigueChef createSeguidor(SigueChefDTO sigueChefDTO);
 

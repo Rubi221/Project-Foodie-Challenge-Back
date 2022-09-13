@@ -3,11 +3,7 @@ package com.example.foodiechallengeback.service.impl;
 
 import com.example.foodiechallengeback.dto.UsuarioDTO;
 import com.example.foodiechallengeback.mapper.UsuarioMapper;
-import com.example.foodiechallengeback.model.Chef;
-import com.example.foodiechallengeback.model.Miembro;
 import com.example.foodiechallengeback.model.Usuario;
-import com.example.foodiechallengeback.repository.IChefRepository;
-import com.example.foodiechallengeback.repository.IMiembroRepository;
 import com.example.foodiechallengeback.repository.IUsuarioRepository;
 import com.example.foodiechallengeback.service.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +19,6 @@ import java.util.List;
 @Service
 public class UsuarioServiceImpl implements IUsuarioService {
     private IUsuarioRepository usuarioRepository;
-    private IChefRepository chefRepository;
-    private IMiembroRepository miembroRepository;
 
     //Obtiene la lista de todos los usuarios
     @Override
@@ -35,23 +29,10 @@ public class UsuarioServiceImpl implements IUsuarioService {
     //Hace el registro de un nuevo usuario
     @Override
     @Transactional
-    public Usuario createUsuario(UsuarioDTO usuarioDTO, Long tipoUsuario, String especialidad) throws Exception {
+    public Usuario createUsuario(UsuarioDTO usuarioDTO) throws Exception {
         var usuario = UsuarioMapper.INSTANCE.toUsuario(usuarioDTO);
         this.validateUsuarioRepetido(usuario);
-        var usuarioBD = this.usuarioRepository.save(usuario);
-        if(tipoUsuario == 1L){
-            Chef chef = new Chef();
-            chef.setIdUsuario(usuarioBD.getId());
-            chef.setEspecialidad(especialidad);
-            chef.setUsuario(usuarioBD);
-            this.chefRepository.save(chef);
-        }else if(tipoUsuario == 2L){
-            Miembro miembro = new Miembro();
-            miembro.setIdUsuario(usuarioBD.getId());
-            miembro.setNivelActividad("0");
-            this.miembroRepository.save(miembro);
-        }
-        return usuarioBD;
+        return this.usuarioRepository.save(usuario);
     }
 
     //Valida los datos de un usuario para realizar inicio de sesion
@@ -87,13 +68,5 @@ public class UsuarioServiceImpl implements IUsuarioService {
     @Autowired
     public void setUsuarioRepository(IUsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
-    }
-    @Autowired
-    public void setChefRepository(IChefRepository chefRepository) {
-        this.chefRepository = chefRepository;
-    }
-    @Autowired
-    public void setMiembroRepository(IMiembroRepository miembroRepository) {
-        this.miembroRepository = miembroRepository;
     }
 }

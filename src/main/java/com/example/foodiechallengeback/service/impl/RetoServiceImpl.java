@@ -3,14 +3,12 @@ package com.example.foodiechallengeback.service.impl;
 import com.example.foodiechallengeback.dto.InscritoRetoDTO;
 import com.example.foodiechallengeback.dto.RetoDTO;
 import com.example.foodiechallengeback.mapper.RetoMapper;
-import com.example.foodiechallengeback.model.Chef;
 import com.example.foodiechallengeback.model.InscripcionReto;
-import com.example.foodiechallengeback.model.Miembro;
 import com.example.foodiechallengeback.model.Reto;
-import com.example.foodiechallengeback.repository.IChefRepository;
+import com.example.foodiechallengeback.model.Usuario;
 import com.example.foodiechallengeback.repository.IInscripcionRetoRepository;
-import com.example.foodiechallengeback.repository.IMiembroRepository;
 import com.example.foodiechallengeback.repository.IRetoRepository;
+import com.example.foodiechallengeback.repository.IUsuarioRepository;
 import com.example.foodiechallengeback.service.interfaces.IRetoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,24 +27,27 @@ import java.util.stream.Collectors;
 public class RetoServiceImpl implements IRetoService {
     private IRetoRepository retoRepository;
     private IInscripcionRetoRepository inscripcionRetoRepository;
-    private IMiembroRepository miembroRepository;
-    private IChefRepository chefRepository;
+    private IUsuarioRepository usuarioRepository;
 
     //Obtiene el usuario que crea un reto
     @Override
-    public Chef obtenerAutorReto(Long idReto){
-        List<Long> list = new ArrayList<>();
-        Long idChef = this.retoRepository.findById(idReto).get().getIdChef();
-        return this.chefRepository.findById(idChef).orElse(null);
+    public Usuario obtenerAutorReto(Long idReto) throws Exception {
+        var usuario = this.retoRepository.findById(idReto).orElse(null);
+        if(usuario != null){
+            return this.usuarioRepository.findById(usuario.getId()).orElse(null);
+        }else{
+            throw new Exception("Id no encontrado");
+        }
+
     }
 
     // Obtiene un reto dado un idReto y un idUsuario
     @Override
     public InscritoRetoDTO obtenerRetoById(Long idReto, Long idUsuario){
-        Miembro miembro = this.miembroRepository.findByIdUsuario(idUsuario);
+        Usuario usuario = this.usuarioRepository.findById(idUsuario).orElse(null);
         Reto reto = this.retoRepository.findById(idReto).orElse(null);
         InscritoRetoDTO retoDTO = RetoMapper.INSTANCE.toInscritoRetoDTO(reto);
-        var inscripcion = this.inscripcionRetoRepository.findInscripcion(idReto, miembro.getId());
+        var inscripcion = this.inscripcionRetoRepository.findInscripcion(idReto,idUsuario);
         retoDTO.setInscrito(inscripcion != null);
         return retoDTO;
     }
@@ -61,8 +62,7 @@ public class RetoServiceImpl implements IRetoService {
     @Override
     public List<InscritoRetoDTO> obtenerRetosAbiertosInscrito(Long idUsuario){
         var listaRetos = this.retoRepository.findAllAbiertas();
-        Miembro miembro = this.miembroRepository.findByIdUsuario(idUsuario);
-        var inscripciones = this.inscripcionRetoRepository.findInscripcionRetoByIdMiembro(miembro.getId());
+        var inscripciones = this.inscripcionRetoRepository.findInscripcionRetoByIdUsuario(idUsuario);
         var listaRetosDTO = listaRetos.stream().map(RetoMapper.INSTANCE::toInscritoRetoDTO).collect(Collectors.toList());
         var idRetosList = inscripciones.stream().map(InscripcionReto::getIdReto).collect(Collectors.toList());
         for (InscritoRetoDTO reto:listaRetosDTO) {
@@ -122,11 +122,7 @@ public class RetoServiceImpl implements IRetoService {
         this.inscripcionRetoRepository = inscripcionRetoRepository;
     }
     @Autowired
-    public void setMiembroRepository(IMiembroRepository miembroRepository) {
-        this.miembroRepository = miembroRepository;
-    }
-    @Autowired
-    public void setChefRepository(IChefRepository chefRepository) {
-        this.chefRepository = chefRepository;
+    public void setUsuarioRepository(IUsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
     }
 }

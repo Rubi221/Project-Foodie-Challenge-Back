@@ -16,7 +16,7 @@ public interface IUsuarioService {
     List<Usuario> findAllUsuario();
 
     @Transactional
-    Usuario createUsuario(UsuarioDTO usuarioDTO, Long tipoUsuario, String especialidad) throws Exception;
+    Usuario createUsuario(UsuarioDTO usuarioDTO) throws Exception;
 
     Usuario validateUsuario(UsuarioDTO usuarioDTO);
 

@@ -17,7 +17,7 @@ public interface IInscripcionRetoService {
 
     //Crea una inscripcion a un reto
     @Transactional
-    InscripcionReto createInscripcionReto(Long idReto, Long idMiembro) throws Exception;
+    InscripcionReto createInscripcionReto(Long idReto, Long idUsuario) throws Exception;
 
     //Asigna los valores para devolver en el DTO
     @Transactional

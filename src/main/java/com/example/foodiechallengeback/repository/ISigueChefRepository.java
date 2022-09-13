@@ -11,12 +11,14 @@ import java.util.List;
 @Repository
 public interface ISigueChefRepository extends JpaRepository<SigueChef, Long> {
 
-    @Query("SELECT sc.chef.id FROM SigueChef sc " +
-            "WHERE sc.chef.id= :aIdMiembro ")
-    List<Long> findAllChef(Long aIdMiembro);
+    @Query("SELECT sc.usuarioChef.id " +
+            "FROM SigueChef sc " +
+            "WHERE sc.usuarioMiembro.id = :idUsuarioMiembro ")
+    List<Long> findAllChef(Long idUsuarioMiembro);
 
-    @Query("SELECT sc.miembro.id FROM SigueChef sc " +
-            "WHERE sc.miembro.id= :aIdChef ")
-    List<Long> findAllMiembro(Long aIdChef);
+    @Query("SELECT sc.usuarioMiembro.id " +
+            "FROM SigueChef sc " +
+            "WHERE sc.usuarioChef.id= :idUsuarioChef ")
+    List<Long> findAllMiembro(Long idUsuarioChef);
 
 }

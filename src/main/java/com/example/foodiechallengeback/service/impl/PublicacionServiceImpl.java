@@ -5,6 +5,7 @@ import com.example.foodiechallengeback.mapper.PublicacionMapper;
 import com.example.foodiechallengeback.model.Publicacion;
 import com.example.foodiechallengeback.repository.IPublicacionRepository;
 import com.example.foodiechallengeback.repository.ISeccionForoRepository;
+import com.example.foodiechallengeback.repository.IUsuarioRepository;
 import com.example.foodiechallengeback.service.interfaces.IPublicacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,12 @@ public class PublicacionServiceImpl implements IPublicacionService {
 
     private IPublicacionRepository publicacionRepository;
     private ISeccionForoRepository seccionForoRepository;
+    private IUsuarioRepository usuarioRepository;
 
     //Obtiene una lista de publicaciones
-    public List<Publicacion> findAllPublicacion(){
-        return this.publicacionRepository.findAll();
+    @Override
+    public List<Publicacion> findAllPublicacion(Long idSeccion, Long idUsuario){
+        return this.publicacionRepository.findAllByIdSeccionOrIdUsuario(idSeccion, idUsuario);
     }
 
     //Crea una publicacion
@@ -30,7 +33,9 @@ public class PublicacionServiceImpl implements IPublicacionService {
         var mensaje = PublicacionMapper.INSTANCE.toPublicacion((publicacionDTO));
         var publicacionBD =  this.publicacionRepository.save(mensaje);
         var seccion = this.seccionForoRepository.findById(publicacionBD.getIdSeccionForo()).orElse(null);
+        var usuario = this.usuarioRepository.findById(publicacionBD.getIdUsuario()).orElse(null);
         publicacionBD.setSeccionForo(seccion);
+        publicacionBD.setUsuario(usuario);
         return publicacionBD;
     }
 
@@ -46,7 +51,9 @@ public class PublicacionServiceImpl implements IPublicacionService {
             publicacionBD.setAdjunto(publicacionDTO.getAdjunto());
             this.publicacionRepository.save(publicacionBD);
             var seccion = this.seccionForoRepository.findById(publicacionBD.getIdSeccionForo()).orElse(null);
+            var usuario = this.usuarioRepository.findById(publicacionBD.getIdUsuario()).orElse(null);
             publicacionBD.setSeccionForo(seccion);
+            publicacionBD.setUsuario(usuario);
             return publicacionBD;
         }else{
             throw new Exception("Id no encontrado");
@@ -69,5 +76,9 @@ public class PublicacionServiceImpl implements IPublicacionService {
     @Autowired
     public void setSeccionForoRepository(ISeccionForoRepository seccionForoRepository){
         this.seccionForoRepository = seccionForoRepository;
+    }
+    @Autowired
+    public void setUsuarioRepository(IUsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
     }
 }

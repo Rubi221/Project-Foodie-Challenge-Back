@@ -13,7 +13,7 @@ public class PuntajeInscripcionDTO {
 
     private Long idInscripcionReto;
 
-    private Long idMiembro;
+    private Long idUsuario;
 
     private Long puntaje;
 }

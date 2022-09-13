@@ -21,8 +21,8 @@ public class InscripcionRetoDTO {
     private Long idReto;
     private String tituloReto;
 
-    private Long idMiembro;
-    private String nombreMiembro;
+    private Long idUsuario;
+    private String nombreUsuario;
 
 }
 

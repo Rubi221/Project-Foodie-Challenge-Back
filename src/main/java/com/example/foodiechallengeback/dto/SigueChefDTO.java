@@ -14,9 +14,9 @@ public class SigueChefDTO {
 
     private Long id;
 
-    private Long idChef;
+    private Long IdUsuarioChef;
 
-    private Long idMiembro;
+    private Long IdUsuarioMiembro;
 
     @JsonFormat(pattern = "dd-MM-yyyy", timezone = "America/Bogota")
     private Date fecha;

@@ -30,14 +30,14 @@ public class SigueChefController {
 
     //Obtiene todos los ID de los seguidores
     @GetMapping("/allSeguidores")
-    public ResponseEntity<List<Long>> getAllSeguidores(@RequestParam(name= "idChef")Long idChef){
-        return new ResponseEntity<>(this.sigueChefService.findAllMiembro(idChef), HttpStatus.OK);
+    public ResponseEntity<List<Long>> getAllSeguidores(@RequestParam(name= "idUsuarioChef")Long idUsuarioChef){
+        return new ResponseEntity<>(this.sigueChefService.findAllMiembro(idUsuarioChef), HttpStatus.OK);
     }
 
     //Obtiene todos los ID de los chefs
     @GetMapping("/allChef")
-    public ResponseEntity<List<Long>> getAllChefs(@RequestParam(name= "idMiembro")Long idMiembro){
-        return new ResponseEntity<>(this.sigueChefService.findAllChef(idMiembro), HttpStatus.OK);
+    public ResponseEntity<List<Long>> getAllChefs(@RequestParam(name= "idUsuarioMiembro")Long idUsuarioMiembro){
+        return new ResponseEntity<>(this.sigueChefService.findAllChef(idUsuarioMiembro), HttpStatus.OK);
     }
 
     //Elimina un seguidor por Id

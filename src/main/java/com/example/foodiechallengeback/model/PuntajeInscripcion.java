@@ -22,8 +22,8 @@ public class PuntajeInscripcion {
     @Column(name = "IdInscripcionReto")
     private Long idInscripcionReto;
 
-    @Column(name = "IdMiembro")
-    private Long idMiembro;
+    @Column(name = "IdUsuario")
+    private Long idUsuario;
 
     @Column(name = "Puntaje")
     private Long puntaje;
@@ -37,6 +37,6 @@ public class PuntajeInscripcion {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdMiembro", insertable = false, updatable = false)
-    private Miembro miembro;
+    @JoinColumn(name = "IdUsuario", insertable = false, updatable = false)
+    private Usuario usuario;
 }

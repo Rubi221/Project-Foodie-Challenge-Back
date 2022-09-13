@@ -17,7 +17,7 @@ public interface InscripcionRetoMapper {
     InscripcionRetoMapper INSTANCE = Mappers.getMapper(InscripcionRetoMapper.class);
 
     //Entity to DTO
-    @Mapping(target = "nombreMiembro", source = "miembro.usuario.nombre")
+    @Mapping(target = "nombreUsuario", source = "usuario.nombre")
     @Mapping(target = "tituloReto", source = "reto.titulo")
     InscripcionRetoDTO toInscripcionRetoDTO(InscripcionReto InscripcionReto);
 

@@ -32,11 +32,9 @@ public class UsuarioController {
 
     //Hace el registro de un nuevo usuario
     @PostMapping
-    public ResponseEntity<?> createUsuario(@Validated  @RequestBody UsuarioDTO usuarioDTO,
-                                                    @RequestParam (name = "tipoUsuario")Long tipoUsuario,
-                                                    @RequestParam (name = "especialidad")String especialidad){
+    public ResponseEntity<?> createUsuario(@Validated  @RequestBody UsuarioDTO usuarioDTO){
         try{
-            return new ResponseEntity<>(UsuarioMapper.INSTANCE.toUsuarioDTO(this.usuarioService.createUsuario(usuarioDTO, tipoUsuario, especialidad)), HttpStatus.CREATED);
+            return new ResponseEntity<>(UsuarioMapper.INSTANCE.toUsuarioDTO(this.usuarioService.createUsuario(usuarioDTO)), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>("Este nombre de usuario ya esta en uso", HttpStatus.CREATED);
         }

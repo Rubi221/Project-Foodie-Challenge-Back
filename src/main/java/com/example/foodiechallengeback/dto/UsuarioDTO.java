@@ -29,4 +29,10 @@ public class UsuarioDTO {
     private String nacionalidad;
 
     private String correo;
+
+    private String especialidad;
+
+    private String nivelActividad;
+
+    private Long idTipoUsuario;
 }

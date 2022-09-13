@@ -30,7 +30,7 @@ public class RetoDTO {
 
     private String video;
 
-    private Long idChef;
+    private Long idUsuario;
     private String nombreChef;
 
     private Long idCategoria;

@@ -1,7 +1,9 @@
 package com.example.foodiechallengeback.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Clase para el manejo de Usuarios
@@ -37,5 +39,21 @@ public class Usuario {
 
     @Column(name = "Correo")
     private String correo;
+
+    @Column(name = "Especialidad")
+    private String especialidad;
+
+    @Column(name = "NivelActividad")
+    private String nivelActividad;
+
+    @Column(name = "IdTipoUsuario")
+    private Long idTipoUsuario;
+
+    //Relaciones
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IdTipoUsuario", insertable = false, updatable = false)
+    private TipoUsuario tipoUsuario;
 
 }

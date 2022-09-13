@@ -29,14 +29,14 @@ public class SigueChefServiceImpl implements ISigueChefService {
 
     //Obtiene la lista de todos los miembros que siguen a un chef
     @Override
-    public List<Long> findAllChef(Long aIdMiembro){
-        return this.sigueChefRepository.findAllChef(aIdMiembro);
+    public List<Long> findAllChef(Long idUsuarioMiembro){
+        return this.sigueChefRepository.findAllChef(idUsuarioMiembro);
     }
 
     //Obtiene la lista de todos los chefs que son seguidos por un miembro
     @Override
-    public List<Long> findAllMiembro(Long aIdChef){
-        return this.sigueChefRepository.findAllMiembro(aIdChef);
+    public List<Long> findAllMiembro(Long idUsuarioChef){
+        return this.sigueChefRepository.findAllMiembro(idUsuarioChef);
     }
 
     //Elimina un Seguidor

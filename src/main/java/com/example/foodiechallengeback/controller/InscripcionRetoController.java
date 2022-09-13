@@ -32,9 +32,9 @@ public class InscripcionRetoController {
     //Crea una inscripcion a un reto
     @PostMapping
     public ResponseEntity<?> createInscripcionReto(@RequestParam(name = "idReto") Long idReto,
-                                                   @RequestParam(name = "idMiembro") Long idMiembro){
+                                                   @RequestParam(name = "idUsuario") Long idUsuario){
         try{
-            return new ResponseEntity<>(InscripcionRetoMapper.INSTANCE.toInscripcionRetoDTO(this.inscripcionRetoService.createInscripcionReto(idReto,idMiembro)), HttpStatus.CREATED);
+            return new ResponseEntity<>(InscripcionRetoMapper.INSTANCE.toInscripcionRetoDTO(this.inscripcionRetoService.createInscripcionReto(idReto,idUsuario)), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>("El miembro ya se ha inscrito a este reto", HttpStatus.CREATED);
         }

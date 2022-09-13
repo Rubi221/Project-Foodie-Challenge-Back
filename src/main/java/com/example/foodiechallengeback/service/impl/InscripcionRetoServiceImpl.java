@@ -2,8 +2,8 @@ package com.example.foodiechallengeback.service.impl;
 
 import com.example.foodiechallengeback.model.InscripcionReto;
 import com.example.foodiechallengeback.repository.IInscripcionRetoRepository;
-import com.example.foodiechallengeback.repository.IMiembroRepository;
 import com.example.foodiechallengeback.repository.IRetoRepository;
+import com.example.foodiechallengeback.repository.IUsuarioRepository;
 import com.example.foodiechallengeback.service.interfaces.IInscripcionRetoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import java.util.List;
 public class InscripcionRetoServiceImpl implements IInscripcionRetoService {
     private IInscripcionRetoRepository inscripcionRetoRepository;
     private IRetoRepository retoRepository;
-    private IMiembroRepository miembroRepository;
+    private IUsuarioRepository usuarioRepository;
 
     // Obtiene la lista de inscripciones para un reto por IdReto
     @Override
@@ -30,10 +30,10 @@ public class InscripcionRetoServiceImpl implements IInscripcionRetoService {
     //Crea una inscripcion a un reto
     @Override
     @Transactional
-    public InscripcionReto createInscripcionReto(Long idReto, Long idMiembro) throws Exception {
+    public InscripcionReto createInscripcionReto(Long idReto, Long idUsuario) throws Exception {
         InscripcionReto inscripcionReto = new InscripcionReto();
         inscripcionReto.setIdReto(idReto);
-        inscripcionReto.setIdMiembro(idMiembro);
+        inscripcionReto.setIdUsuario(idUsuario);
         this.validateInscripcionHecha(inscripcionReto);
         this.inscripcionRetoRepository.save(inscripcionReto);
         return this.setValoresDTO(inscripcionReto);
@@ -43,10 +43,10 @@ public class InscripcionRetoServiceImpl implements IInscripcionRetoService {
     @Override
     @Transactional
     public InscripcionReto setValoresDTO(InscripcionReto inscripcionReto){
-        var miembro = this.miembroRepository.findById(inscripcionReto.getIdMiembro()).orElse(null);
+        var usuario = this.usuarioRepository.findById(inscripcionReto.getIdUsuario()).orElse(null);
         var reto = this.retoRepository.findById(inscripcionReto.getIdReto()).orElse(null);
-        if (miembro != null){
-            inscripcionReto.setMiembro(miembro);
+        if (usuario != null){
+            inscripcionReto.setUsuario(usuario);
         }
         if (reto != null){
             inscripcionReto.setReto(reto);
@@ -56,7 +56,7 @@ public class InscripcionRetoServiceImpl implements IInscripcionRetoService {
 
     //Valida si un miembro ya esta inscrito en un reto
     private void validateInscripcionHecha(InscripcionReto inscripcion) throws Exception {
-        var inscripcionBD = this.inscripcionRetoRepository.findInscripcion(inscripcion.getIdReto(), inscripcion.getIdMiembro());
+        var inscripcionBD = this.inscripcionRetoRepository.findInscripcion(inscripcion.getIdReto(), inscripcion.getIdUsuario());
         if(inscripcionBD != null){
             throw new Exception("El miembro ya se ha inscrito a este reto");
         }
@@ -72,7 +72,7 @@ public class InscripcionRetoServiceImpl implements IInscripcionRetoService {
         this.retoRepository = retoRepository;
     }
     @Autowired
-    public void setMiembroRepository(IMiembroRepository miembroRepository) {
-        this.miembroRepository = miembroRepository;
+    public void setUsuarioRepository(IUsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
     }
 }

@@ -15,11 +15,11 @@ import java.util.List;
 public interface IInscripcionRetoRepository extends JpaRepository<InscripcionReto, Long> {
     @Query("SELECT i " +
             "FROM InscripcionReto i " +
-            "WHERE i.idMiembro = :idMiembro " +
+            "WHERE i.idUsuario = :idUsuario " +
             "AND i.idReto = :idReto ")
-    InscripcionReto findInscripcion(Long idReto, Long idMiembro);
+    InscripcionReto findInscripcion(Long idReto, Long idUsuario);
 
     List<InscripcionReto> findAllByIdReto(Long idReto);
 
-    List<InscripcionReto> findInscripcionRetoByIdMiembro(Long idMiembro);
+    List<InscripcionReto> findInscripcionRetoByIdUsuario(Long idUsuario);
 }

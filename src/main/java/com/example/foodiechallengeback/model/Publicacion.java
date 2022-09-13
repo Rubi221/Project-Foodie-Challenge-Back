@@ -30,6 +30,9 @@ public class Publicacion {
     @Column(name = "IdSeccionForo")
     private Long idSeccionForo;
 
+    @Column(name = "IdUsuario")
+    private Long idUsuario;
+
     @Column(name = "Adjunto")
     private String adjunto;
 
@@ -43,4 +46,9 @@ public class Publicacion {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "IdSeccionForo", insertable = false, updatable = false)
     private SeccionForo seccionForo;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IdUsuario", insertable = false, updatable = false)
+    private Usuario usuario;
 }

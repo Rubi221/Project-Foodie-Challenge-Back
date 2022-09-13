@@ -39,8 +39,8 @@ public class Reto {
     @Column(name = "Video")
     private String video;
 
-    @Column(name = "IdChef")
-    private Long idChef;
+    @Column(name = "IdUsuario")
+    private Long idUsuario;
 
     @Column(name = "IdCategoria")
     private Long idCategoria;
@@ -57,8 +57,8 @@ public class Reto {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdChef", insertable = false, updatable = false)
-    private Chef chef;
+    @JoinColumn(name = "IdUsuario", insertable = false, updatable = false)
+    private Usuario usuario;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)

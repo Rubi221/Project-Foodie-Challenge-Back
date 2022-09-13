@@ -2,6 +2,7 @@ package com.example.foodiechallengeback.controller;
 
 import com.example.foodiechallengeback.dto.PublicacionDTO;
 import com.example.foodiechallengeback.mapper.PublicacionMapper;
+import com.example.foodiechallengeback.repository.IUsuarioRepository;
 import com.example.foodiechallengeback.service.interfaces.IPublicacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +19,11 @@ public class PublicacionController {
 
     private IPublicacionService publicacionService;
 
-    //Obtiene la lista de todos las publicaciones
+    //Obtiene la lista de las publicaciones por seccion y/o usuario
     @GetMapping("/all")
-    public ResponseEntity<List<PublicacionDTO>> getAllPublicaciones(){
-        return new ResponseEntity<>(this.publicacionService.findAllPublicacion().stream().map(PublicacionMapper.INSTANCE::toPublicacionDTO).collect(Collectors.toList()), HttpStatus.OK);
+    public ResponseEntity<List<PublicacionDTO>> getAllPublicaciones(@RequestParam(name = "idSeccion",required = false)Long idSeccion,
+                                                                    @RequestParam(name = "idUsuario",required = false)Long idUsuario){
+        return new ResponseEntity<>(this.publicacionService.findAllPublicacion(idSeccion, idUsuario).stream().map(PublicacionMapper.INSTANCE::toPublicacionDTO).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     //Crea una nuevo publicacion
@@ -53,5 +55,8 @@ public class PublicacionController {
 
     //Inyecciones
     @Autowired
-    public void setPublicacionService(IPublicacionService publicacionService){ this.publicacionService = publicacionService; }
+    public void setPublicacionService(IPublicacionService publicacionService){
+        this.publicacionService = publicacionService;
+    }
+
 }

@@ -18,11 +18,11 @@ public interface RetoMapper {
     RetoMapper INSTANCE = Mappers.getMapper(RetoMapper.class);
 
     //Entity to DTO
-    @Mapping(target = "nombreChef", source = "chef.usuario.nombre")
+    @Mapping(target = "nombreChef", source = "usuario.nombre")
     @Mapping(target = "nombreCategoria", source = "categoria.nombre")
     RetoDTO toRetoDTO(Reto reto);
 
-    @Mapping(target = "nombreChef", source = "chef.usuario.nombre")
+    @Mapping(target = "nombreChef", source = "usuario.nombre")
     @Mapping(target = "nombreCategoria", source = "categoria.nombre")
     InscritoRetoDTO toInscritoRetoDTO(Reto reto);
 
