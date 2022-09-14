@@ -42,4 +42,6 @@ public class InscritoRetoDTO {
 
     @JsonFormat(pattern = "dd-MM-yyyy", timezone = "America/Bogota")
     private Date fechaFin;
+
+    private String adjunto;
 }
