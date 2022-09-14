@@ -18,6 +18,10 @@ public interface IUsuarioService {
     @Transactional
     Usuario createUsuario(UsuarioDTO usuarioDTO) throws Exception;
 
+    //Edita la informacion de un usuario
+    @Transactional
+    Usuario updateUsuario(UsuarioDTO usuarioDTO) throws Exception;
+
     Usuario validateUsuario(UsuarioDTO usuarioDTO);
 
     @Transactional

@@ -5,6 +5,8 @@ import com.example.foodiechallengeback.model.DetalleInscripcion;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Interfaz para manejar DetalleInscripcion
  * @autor Rubi Utima
@@ -13,6 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 public interface IDetalleInscripcionService {
     // Obtiene un detalle de inscripcion
     DetalleInscripcion obtenerDetalleByIdInscripcion(Long idInscripcion);
+
+    // Obtiene todas las entregas de un reto
+    List<DetalleInscripcion> obtenerDetallesByIdReto(Long idReto);
 
     //Crea una detalle inscripcion
     @Transactional

@@ -9,6 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Clase controladora para DetalleInscripcion
  *
@@ -25,6 +28,13 @@ public class DetalleInscripcionController {
     @GetMapping("/entrega")
     public ResponseEntity<DetalleInscripcionDTO> obtenerDetalleByIdInscripcion(@RequestParam(name = "idInscripcion")Long idInscripcion){
         return new ResponseEntity<>(DetalleInscripcionMapper.INSTANCE.toDetalleInscripcionDTO(this.detalleInscripcionService.obtenerDetalleByIdInscripcion(idInscripcion)), HttpStatus.OK);
+    }
+
+    // Obtiene todas las entregas de un reto
+    @GetMapping("/allEntregasByReto")
+    public ResponseEntity<List<DetalleInscripcionDTO>> obtenerDetallesByIdReto(@RequestParam(name = "idReto")Long idReto){
+        return new ResponseEntity<>(this.detalleInscripcionService.obtenerDetallesByIdReto(idReto).stream()
+                .map(DetalleInscripcionMapper.INSTANCE::toDetalleInscripcionDTO).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     //Crea un detalle de inscripcion a un reto

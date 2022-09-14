@@ -37,4 +37,6 @@ public class UsuarioDTO {
     private Long idTipoUsuario;
 
     private String nombreTipoUsuario;
+
+    private String foto;
 }

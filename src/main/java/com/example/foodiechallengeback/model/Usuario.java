@@ -49,6 +49,9 @@ public class Usuario {
     @Column(name = "IdTipoUsuario")
     private Long idTipoUsuario;
 
+    @Column(name = "Img")
+    private String foto;
+
     //Relaciones
 
     @JsonIgnore

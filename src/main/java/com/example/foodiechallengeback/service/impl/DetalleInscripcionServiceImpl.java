@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Servicio que implementa la interfaz para manejar DetalleInscripcion
  * @autor Rubi Utima
@@ -22,6 +24,12 @@ public class DetalleInscripcionServiceImpl implements IDetalleInscripcionService
     @Override
     public DetalleInscripcion obtenerDetalleByIdInscripcion(Long idInscripcion){
         return this.detalleInscripcionRepository.findByIdInscripcionReto(idInscripcion);
+    }
+
+    // Obtiene todas las entregas de un reto
+    @Override
+    public List<DetalleInscripcion> obtenerDetallesByIdReto(Long idReto){
+        return this.detalleInscripcionRepository.findAllDetallesByIdReto(idReto);
     }
 
     //Crea una detalle inscripcion

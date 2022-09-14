@@ -37,7 +37,17 @@ public class UsuarioController {
         try{
             return new ResponseEntity<>(UsuarioMapper.INSTANCE.toUsuarioDTO(this.usuarioService.createUsuario(usuarioDTO)), HttpStatus.CREATED);
         }catch (Exception e){
-            return new ResponseEntity<>("Este nombre de usuario ya esta en uso", HttpStatus.CREATED);
+            return new ResponseEntity<>("Este nombre de usuario ya esta en uso", HttpStatus.CONFLICT);
+        }
+    }
+
+    //Edita la informacion de un usuario
+    @PutMapping
+    public ResponseEntity<?> updateUsuario(@Validated  @RequestBody UsuarioDTO usuarioDTO){
+        try{
+            return new ResponseEntity<>(UsuarioMapper.INSTANCE.toUsuarioDTO(this.usuarioService.updateUsuario(usuarioDTO)), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>("Este nombre de usuario ya esta en uso", HttpStatus.CONFLICT);
         }
     }
 

@@ -35,6 +35,26 @@ public class UsuarioServiceImpl implements IUsuarioService {
         return this.usuarioRepository.save(usuario);
     }
 
+    //Edita la informacion de un usuario
+    @Override
+    @Transactional
+    public Usuario updateUsuario(UsuarioDTO usuarioDTO) throws Exception {
+        var usuarioBD = this.usuarioRepository.findById(usuarioDTO.getId()).orElse(null);
+        this.validateUsuarioRepetido(UsuarioMapper.INSTANCE.toUsuario(usuarioDTO));
+        if (usuarioBD != null){
+            usuarioBD.setNombre(usuarioDTO.getNombre());
+            usuarioBD.setContrasena(usuarioDTO.getContrasena());
+            usuarioBD.setUsername(usuarioDTO.getUsername());
+            usuarioBD.setNacionalidad(usuarioDTO.getNacionalidad());
+            usuarioBD.setEspecialidad(usuarioDTO.getEspecialidad());
+            usuarioBD.setCorreo(usuarioDTO.getCorreo());
+            usuarioBD.setFoto(usuarioDTO.getFoto());
+        }else{
+            throw new Exception("Id no encontrado");
+        }
+        return this.usuarioRepository.save(usuarioBD);
+    }
+
     //Valida los datos de un usuario para realizar inicio de sesion
     @Override
     public Usuario validateUsuario(UsuarioDTO usuarioDTO){

@@ -3,6 +3,7 @@ package com.example.foodiechallengeback.service.impl;
 import com.example.foodiechallengeback.dto.PuntajeInscripcionDTO;
 import com.example.foodiechallengeback.mapper.PuntajeInscripcionMapper;
 import com.example.foodiechallengeback.model.PuntajeInscripcion;
+import com.example.foodiechallengeback.repository.IDetalleInscripcionRepository;
 import com.example.foodiechallengeback.repository.IPuntajeInscripcionRepository;
 import com.example.foodiechallengeback.service.interfaces.IPuntajeInscripcionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class PuntajeInscripcionServiceImpl implements IPuntajeInscripcionService
 
     private IPuntajeInscripcionRepository puntajeInscripcionRepository;
 
+    private IDetalleInscripcionRepository detalleInscripcionRepository;
+
     //Obtiene todos los puntajes
     @Override
     public List<PuntajeInscripcion> findAllPuntajes(){
@@ -23,17 +26,27 @@ public class PuntajeInscripcionServiceImpl implements IPuntajeInscripcionService
     }
 
 
-    //Crea un nuevo Seguidor
+    //Puntua una inscripcion
     @Override
     @Transactional
     public PuntajeInscripcion createPuntaje(PuntajeInscripcionDTO puntajeInscripcionDTO){
         var puntaje = PuntajeInscripcionMapper.INSTANCE.toPuntajeInscripcion(puntajeInscripcionDTO);
-        return this.puntajeInscripcionRepository.save(puntaje);
+        var puntajeBD = this.puntajeInscripcionRepository.save(puntaje);
+        var puntuacionFinal = this.puntajeInscripcionRepository.sumAllPuntajes(puntajeBD.getIdInscripcionReto());
+        var detalle = this.detalleInscripcionRepository.findByIdInscripcionReto(puntajeBD.getIdInscripcionReto());
+        detalle.setCalificacionFinal(puntuacionFinal);
+        this.detalleInscripcionRepository.save(detalle);
+        return puntajeBD;
     }
 
     //Inyecciones
     @Autowired
     public void setPuntajeInscripcionRepository(IPuntajeInscripcionRepository puntajeInscripcionRepository){
         this.puntajeInscripcionRepository = puntajeInscripcionRepository;
+    }
+
+    @Autowired
+    public void setDetalleInscripcionRepository(IDetalleInscripcionRepository detalleInscripcionRepository) {
+        this.detalleInscripcionRepository = detalleInscripcionRepository;
     }
 }
