@@ -104,8 +104,8 @@ public class RetoServiceImpl implements IRetoService {
     //Valida las fechas ingresadas para creacion de un reto
     private void validateFechas(Reto reto) throws Exception {
         Long dias = ((reto.getFechaFin().getTime() - reto.getFechaInicio().getTime())/86400000L);
-        if(reto.getFechaInicio().before(new Date())){
-            throw new Exception("La fecha de inicio debe ser mayor a la fecha actual");
+        if(reto.getFechaFin().before(new Date())){
+            throw new Exception("La fecha de fin debe ser mayor a la fecha actual");
         } else if(reto.getFechaFin().before(reto.getFechaInicio())){
             throw new Exception("La fecha de fin debe ser mayor a la fecha de inicio");
         }else if (dias > 30) {
