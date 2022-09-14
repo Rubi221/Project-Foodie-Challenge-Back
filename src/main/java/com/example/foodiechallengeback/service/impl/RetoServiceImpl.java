@@ -94,6 +94,7 @@ public class RetoServiceImpl implements IRetoService {
             retoBD.setIdCategoria(retoDTO.getIdCategoria());
             retoBD.setFechaInicio(retoDTO.getFechaInicio());
             retoBD.setFechaFin(retoDTO.getFechaFin());
+            retoBD.setAdjunto(retoDTO.getAdjunto());
         }else{
             throw new Exception("Id no encontrado");
         }

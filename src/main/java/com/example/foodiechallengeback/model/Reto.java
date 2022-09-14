@@ -53,6 +53,9 @@ public class Reto {
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
 
+    @Column(name = "Adjunto")
+    private String adjunto;
+
     //Relaciones
 
     @JsonIgnore
