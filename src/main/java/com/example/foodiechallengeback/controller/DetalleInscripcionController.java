@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 1.0
  */
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/detalleInscripcion")
 public class DetalleInscripcionController {
     private IDetalleInscripcionService detalleInscripcionService;

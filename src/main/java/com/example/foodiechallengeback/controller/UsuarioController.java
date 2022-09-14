@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
  * @since 1.0
  */
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/usuario")
 public class UsuarioController {
     private IUsuarioService usuarioService;

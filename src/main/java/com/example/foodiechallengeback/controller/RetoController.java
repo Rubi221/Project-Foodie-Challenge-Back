@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
  * @since 1.0
  */
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/reto")
 public class RetoController {
     private IRetoService retoService;
