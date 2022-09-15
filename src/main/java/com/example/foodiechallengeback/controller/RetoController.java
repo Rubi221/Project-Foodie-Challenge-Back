@@ -72,6 +72,13 @@ public class RetoController {
         }
     }
 
+    //Elimina una publicacion por Id
+    @DeleteMapping
+    public ResponseEntity<Boolean> deleteReto(@RequestParam(name = "Id") Long aId) throws Exception {
+        this.retoService.deleteReto(aId);
+        return new ResponseEntity<>(true, HttpStatus.OK);
+    }
+
     //Inyecciones
     @Autowired
     public void setRetoService(IRetoService retoService){

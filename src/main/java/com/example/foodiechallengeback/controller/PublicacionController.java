@@ -47,7 +47,7 @@ public class PublicacionController {
         }
     }
 
-    //Elimina un mensaje por Id
+    //Elimina una publicacion por Id
     @DeleteMapping
     public ResponseEntity<Boolean> deletePublicacion(@RequestParam(name = "Id") Long aId) {
         this.publicacionService.deletePublicacion(aId);

@@ -32,4 +32,8 @@ public interface IRetoService {
     //Actualiza un nuevo reto
     @Transactional
     Reto updateReto(RetoDTO retoDTO) throws Exception;
+
+    //Elimina un reto
+    @Transactional
+    void deleteReto(Long aId) throws Exception;
 }

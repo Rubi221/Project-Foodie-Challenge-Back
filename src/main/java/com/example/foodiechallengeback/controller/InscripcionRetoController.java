@@ -31,7 +31,7 @@ public class InscripcionRetoController {
     }
 
     //Crea una inscripcion a un reto
-    @PostMapping
+    @GetMapping
     public ResponseEntity<?> createInscripcionReto(@RequestParam(name = "idReto") Long idReto,
                                                    @RequestParam(name = "idUsuario") Long idUsuario){
         try{

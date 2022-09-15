@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -110,6 +109,18 @@ public class RetoServiceImpl implements IRetoService {
             throw new Exception("La fecha de fin debe ser mayor a la fecha de inicio");
         }else if (dias > 30) {
             throw new Exception("La duracion del reto debe ser menor a 30 dias");
+        }
+    }
+
+    //Elimina un reto
+    @Override
+    @Transactional
+    public void deleteReto(Long aId) throws Exception {
+        var retoBD = retoRepository.findById(aId).orElse(null);
+        if(retoBD != null){
+        this.retoRepository.deleteById(retoBD.getId());
+        }else{
+            throw new Exception("Id no encontrado");
         }
     }
 
