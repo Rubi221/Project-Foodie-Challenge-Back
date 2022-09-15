@@ -22,8 +22,8 @@ public class RecetaServiceImpl implements IRecetaService {
 
     // Obtiene todas las recetas segun idTipoReceta
     @Override
-    public List<Receta> obtenerRecetaByIdTipoReceta(Long idTipoReceta){
-        return this.recetaRepository.findAllByIdTipoReceta(idTipoReceta);
+    public List<Receta> obtenerAllReceta(){
+        return this.recetaRepository.findAll();
     }
 
     // Obtiene una receta por id

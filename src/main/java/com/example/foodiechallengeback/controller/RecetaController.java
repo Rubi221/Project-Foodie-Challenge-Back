@@ -29,9 +29,9 @@ public class RecetaController {
     private IRecetaService recetaService;
 
     // Obtiene todas las recetas segun idTipoReceta
-    @GetMapping("/allByIdTipoReceta")
-    public ResponseEntity<List<RecetaDTO>> obtenerRecetaByIdTipoReceta(@RequestParam(name = "idTipoReceta")Long idTipoReceta){
-        return new ResponseEntity<>(this.recetaService.obtenerRecetaByIdTipoReceta(idTipoReceta).stream().map(RecetaMapper.INSTANCE::toRecetaDTO).collect(Collectors.toList()), HttpStatus.OK);
+    @GetMapping("/all")
+    public ResponseEntity<List<RecetaDTO>> obtenerAllReceta(){
+        return new ResponseEntity<>(this.recetaService.obtenerAllReceta().stream().map(RecetaMapper.INSTANCE::toRecetaDTO).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     // Obtiene una receta por id

@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public interface IRecetaService {
     // Obtiene todas las recetas segun idTipoReceta
-    List<Receta> obtenerRecetaByIdTipoReceta(Long idTipoReceta);
+    List<Receta> obtenerAllReceta();
 
     // Obtiene la lista de retos abiertos
     Receta obtenerRecetaById(Long aId);
