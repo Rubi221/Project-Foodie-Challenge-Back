@@ -54,6 +54,7 @@ public class RetoServiceImpl implements IRetoService {
         InscritoRetoDTO retoDTO = RetoMapper.INSTANCE.toInscritoRetoDTO(reto);
         var inscripcion = this.inscripcionRetoRepository.findInscripcion(idReto,idUsuario);
         retoDTO.setInscrito(inscripcion != null);
+        retoDTO.setIdInscripcion(inscripcion.getId());
         return retoDTO;
     }
 

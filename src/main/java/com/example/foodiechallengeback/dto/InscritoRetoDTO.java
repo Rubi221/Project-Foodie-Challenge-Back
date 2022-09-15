@@ -33,6 +33,7 @@ public class InscritoRetoDTO {
     private String nombreChef;
 
     private Boolean inscrito;
+    private Long idInscripcion;
 
     private Long idCategoria;
     private String nombreCategoria;
