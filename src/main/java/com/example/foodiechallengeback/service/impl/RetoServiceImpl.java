@@ -28,6 +28,12 @@ public class RetoServiceImpl implements IRetoService {
     private IInscripcionRetoRepository inscripcionRetoRepository;
     private IUsuarioRepository usuarioRepository;
 
+    //Obtiene todos los retos por categoria
+    @Override
+    public List<Reto> obtenerRetosByCategoria(Long idCategoria){
+        return this.retoRepository.findAllByIdCategoria(idCategoria);
+    }
+
     //Obtiene el usuario que crea un reto
     @Override
     public Usuario obtenerAutorReto(Long idReto) throws Exception {

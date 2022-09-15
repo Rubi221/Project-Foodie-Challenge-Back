@@ -19,5 +19,7 @@ public interface IRetoRepository extends JpaRepository<Reto, Long> {
             "AND SYSDATE() <= r.fechaFin ")
     List<Reto> findAllAbiertas();
 
+    List<Reto> findAllByIdCategoria(Long idCategoria);
+
 
 }

@@ -15,6 +15,9 @@ import java.util.List;
  */
 @Service
 public interface IRetoService {
+    //Obtiene todos los retos por categoria
+    List<Reto> obtenerRetosByCategoria(Long idCategoria);
+
     //Obtiene el usuario que crea un reto
     Usuario obtenerAutorReto(Long idReto) throws Exception;
 

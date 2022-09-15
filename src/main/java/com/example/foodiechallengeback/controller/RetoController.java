@@ -27,6 +27,13 @@ import java.util.stream.Collectors;
 public class RetoController {
     private IRetoService retoService;
 
+    //Obtiene todos los retos por categoria
+    @GetMapping("/allByCategoria")
+    public ResponseEntity<List<RetoDTO>> obtenerRetosByCategoria(@RequestParam(name = "idCategoria")Long idCategoria) throws Exception {
+        return new ResponseEntity<>(this.retoService.obtenerRetosByCategoria(idCategoria).stream()
+                .map(RetoMapper.INSTANCE::toRetoDTO).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
     //Obtiene el id del usuario que crea un reto
     @GetMapping("/autor")
     public ResponseEntity<UsuarioDTO> obtenerAutorReto(@RequestParam(name = "idReto")Long idReto) throws Exception {
