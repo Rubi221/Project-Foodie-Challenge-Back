@@ -3,6 +3,7 @@ package com.example.foodiechallengeback.mapper;
 import com.example.foodiechallengeback.dto.DetalleInscripcionDTO;
 import com.example.foodiechallengeback.model.DetalleInscripcion;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 /**
@@ -16,7 +17,7 @@ public interface DetalleInscripcionMapper {
     DetalleInscripcionMapper INSTANCE = Mappers.getMapper(DetalleInscripcionMapper.class);
 
     //Entity to DTO
-
+    @Mapping(target = "nombreUsuario", source = "inscripcionReto.usuario.nombre")
     DetalleInscripcionDTO toDetalleInscripcionDTO(DetalleInscripcion detalleInscripcion);
 
 

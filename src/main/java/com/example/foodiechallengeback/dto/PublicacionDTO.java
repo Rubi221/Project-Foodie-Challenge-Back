@@ -17,8 +17,10 @@ public class PublicacionDTO {
     private String contenido;
 
     private Long idSeccionForo;
-
     private String nombreSeccionForo;
+
+    private Long idUsuario;
+    private String nombreUsuario;
 
     @JsonFormat(pattern = "dd-MM-yyyy", timezone = "America/Bogota")
     private Date fecha;

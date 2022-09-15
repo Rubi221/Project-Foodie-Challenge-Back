@@ -50,4 +50,9 @@ public class Comentario {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "IdPublicacion", insertable = false, updatable = false)
     private Publicacion publicacion;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IdUsuario", insertable = false, updatable = false)
+    private Usuario usuario;
 }

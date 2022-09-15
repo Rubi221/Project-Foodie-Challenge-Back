@@ -26,6 +26,7 @@ public class RecetaDTO {
     private String contenido;
 
     private Long idUsuario;
+    private String nombreUsuario;
 
     private Long idCategoria;
 

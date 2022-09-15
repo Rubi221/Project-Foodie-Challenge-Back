@@ -15,6 +15,7 @@ public class ComentarioDTO {
     private Long id;
 
     private Long idUsuario;
+    private String nombreUsuario;
 
     private String contenido;
 
