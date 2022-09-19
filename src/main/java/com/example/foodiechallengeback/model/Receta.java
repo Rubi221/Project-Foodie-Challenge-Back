@@ -39,9 +39,6 @@ public class Receta {
     @Column(name = "IdCategoria")
     private Long idCategoria;
 
-    @Column(name = "IdSubcategoria")
-    private Long idSubategoria;
-
     @Column(name = "Fecha", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fecha;
@@ -60,10 +57,5 @@ public class Receta {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "IdCategoria", insertable = false, updatable = false)
     private Categoria categoria;
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdSubcategoria", insertable = false, updatable = false)
-    private Subcategoria subcategoria;
 
 }
