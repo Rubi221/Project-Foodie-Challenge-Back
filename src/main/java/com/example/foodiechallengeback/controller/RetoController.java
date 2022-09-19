@@ -59,6 +59,12 @@ public class RetoController {
         return new ResponseEntity<>(this.retoService.obtenerRetosAbiertosInscrito(idUsuario), HttpStatus.OK);
     }
 
+    // Obtiene la lista de retos inscritos por un usuario o creados por un chef
+    @GetMapping("/misRetos")
+    public ResponseEntity<List<RetoDTO>> getMisRetos(@RequestParam(name="idUsuario")Long idUsuario){
+        return new ResponseEntity<>(this.retoService.getMisRetos(idUsuario).stream().map(RetoMapper.INSTANCE::toRetoDTO).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
     //Crea un nuevo reto
     @PostMapping
     public ResponseEntity<?> createReto(@Validated @RequestBody RetoDTO retoDTO){

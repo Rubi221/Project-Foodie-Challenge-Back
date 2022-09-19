@@ -21,5 +21,15 @@ public interface IRetoRepository extends JpaRepository<Reto, Long> {
 
     List<Reto> findAllByIdCategoria(Long idCategoria);
 
+    @Query("SELECT r " +
+            "FROM Reto r " +
+            "WHERE r.idUsuario =:idUsuario ")
+    List<Reto> findAllCreadosPor(Long idUsuario);
+
+    @Query("SELECT r " +
+            "FROM Reto r " +
+            "WHERE SYSDATE()  >= r.fechaInicio " +
+            "AND SYSDATE() <= r.fechaFin ")
+    List<Reto> findAllInscritos(Long idUsuario);
 
 }

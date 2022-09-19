@@ -29,6 +29,9 @@ public interface IRetoService {
     // Obtiene la lista de retos abiertos e inscritos dado un usuario
     List<InscritoRetoDTO> obtenerRetosAbiertosInscrito(Long idUsuario);
 
+    //Obtiene la lista de retos inscritos por un usuario o creados por un chef
+    List<Reto> getMisRetos(Long idUsuario);
+
     @Transactional
     Reto createReto(RetoDTO retoDTO) throws Exception;
 

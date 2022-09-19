@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -80,6 +81,22 @@ public class RetoServiceImpl implements IRetoService {
             reto.setInscrito(idRetosList.contains(reto.getId()));
         }
         return listaRetosDTO;
+    }
+
+    //Obtiene la lista de retos inscritos por un usuario o creados por un chef
+    @Override
+    public List<Reto> getMisRetos(Long idUsuario){
+        var usuario = this.usuarioRepository.findById(idUsuario).orElse(null);
+        List<Reto> retosList = new ArrayList<>();
+        if(usuario != null){
+            var idTipoUsuario = usuario.getIdTipoUsuario();
+            if(idTipoUsuario == 1){
+                retosList = this.retoRepository.findAllCreadosPor(idUsuario);
+            }else{
+                retosList = this.inscripcionRetoRepository.findAllInscritos(idUsuario);
+            }
+        }
+        return retosList;
     }
 
     //Crea un nuevo reto
