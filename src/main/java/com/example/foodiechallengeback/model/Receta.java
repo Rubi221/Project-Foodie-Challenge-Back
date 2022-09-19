@@ -39,17 +39,14 @@ public class Receta {
     @Column(name = "IdCategoria")
     private Long idCategoria;
 
-    @Column(name = "IdSubategoria")
+    @Column(name = "IdSubcategoria")
     private Long idSubategoria;
-
-    @Column(name = "IdTipoReceta")
-    private Long idTipoReceta;
 
     @Column(name = "Fecha", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fecha;
 
-    @Column(name = "Adjunto")
+    @Column(name = "Adjunto",columnDefinition = "LONGTEXT")
     private String adjunto;
 
     //Relaciones
@@ -69,8 +66,4 @@ public class Receta {
     @JoinColumn(name = "IdSubcategoria", insertable = false, updatable = false)
     private Subcategoria subcategoria;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdTipoReceta", insertable = false, updatable = false)
-    private TipoReceta tipoReceta;
 }

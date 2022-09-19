@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 public class RecetaController {
     private IRecetaService recetaService;
 
-    // Obtiene todas las recetas segun idTipoReceta
+    // Obtiene todas las recetas
     @GetMapping("/all")
     public ResponseEntity<List<RecetaDTO>> obtenerAllReceta(){
         return new ResponseEntity<>(this.recetaService.obtenerAllReceta().stream().map(RecetaMapper.INSTANCE::toRecetaDTO).collect(Collectors.toList()), HttpStatus.OK);

@@ -35,7 +35,7 @@ public class DetalleInscripcion {
     @Column(name = "Video")
     private String video;
 
-    @Column(name = "AdjuntoImg")
+    @Column(name = "AdjuntoImg",columnDefinition = "LONGTEXT")
     private String adjuntoImg;
 
     //Relaciones

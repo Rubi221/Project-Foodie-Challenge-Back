@@ -49,7 +49,7 @@ public class Usuario {
     @Column(name = "IdTipoUsuario")
     private Long idTipoUsuario;
 
-    @Column(name = "Img")
+    @Column(name = "Img",columnDefinition = "LONGTEXT")
     private String foto;
 
     //Relaciones

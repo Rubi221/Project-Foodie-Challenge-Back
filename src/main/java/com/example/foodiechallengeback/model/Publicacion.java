@@ -33,11 +33,8 @@ public class Publicacion {
     @Column(name = "IdUsuario")
     private Long idUsuario;
 
-    @Column(name = "Adjunto")
+    @Column(name = "Adjunto",columnDefinition = "LONGTEXT")
     private String adjunto;
-
-    @Column(name = "AdjuntoB")
-    private String adjuntoBlob;
 
 
     //Relaciones

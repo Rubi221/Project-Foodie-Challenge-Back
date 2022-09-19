@@ -30,9 +30,7 @@ public class RecetaDTO {
 
     private Long idCategoria;
 
-    private Long idSubategoria;
-
-    private Long idTipoReceta;
+    private Long idSubcategoria;
 
     @JsonFormat(pattern = "dd-MM-yyyy", timezone = "America/Bogota")
     private Date fecha;

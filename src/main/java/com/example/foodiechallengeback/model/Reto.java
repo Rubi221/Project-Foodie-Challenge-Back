@@ -53,7 +53,7 @@ public class Reto {
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
 
-    @Column(name = "Adjunto")
+    @Column(name = "Adjunto",columnDefinition = "LONGTEXT")
     private String adjunto;
 
     //Relaciones
