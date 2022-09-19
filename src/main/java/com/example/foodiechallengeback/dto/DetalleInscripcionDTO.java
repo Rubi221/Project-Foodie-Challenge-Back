@@ -21,6 +21,7 @@ public class DetalleInscripcionDTO {
     private Long idInscripcionReto;
 
     private String nombreUsuario;
+    private String fotoUsuario;
 
     private Long calificacionFinal;
 

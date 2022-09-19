@@ -17,6 +17,7 @@ public interface RecetaMapper {
 
     //Entity to DTO
     @Mapping(target = "nombreUsuario", source = "usuario.nombre")
+    @Mapping(target = "fotoUsuario", source = "usuario.foto")
     RecetaDTO toRecetaDTO(Receta receta);
 
 

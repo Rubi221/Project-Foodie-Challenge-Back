@@ -13,6 +13,7 @@ public interface ComentarioMapper {
 
     //Entity to DTO
     @Mapping(target = "nombreUsuario", source = "usuario.nombre")
+    @Mapping(target = "fotoUsuario", source = "usuario.foto")
     ComentarioDTO toMensajeDTO(Comentario mensaje);
 
     //DTO to Entity

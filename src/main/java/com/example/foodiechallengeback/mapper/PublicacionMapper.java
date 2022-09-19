@@ -15,6 +15,7 @@ public interface PublicacionMapper {
     @Mapping(target = "idSeccionForo", source = "seccionForo.id")
     @Mapping(target = "nombreSeccionForo", source = "seccionForo.nombre")
     @Mapping(target = "nombreUsuario", source = "usuario.nombre")
+    @Mapping(target = "fotoUsuario", source = "usuario.foto")
     PublicacionDTO toPublicacionDTO(Publicacion publicacion);
 
     //DTO to Entity

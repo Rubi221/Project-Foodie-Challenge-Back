@@ -22,8 +22,8 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     //Obtiene la lista de todos los usuarios
     @Override
-    public List<Usuario> findAllUsuario(){
-        return this.usuarioRepository.findAll();
+    public Usuario findById(Long idUsuario){
+        return this.usuarioRepository.findById(idUsuario).orElse(null);
     }
 
     //Hace el registro de un nuevo usuario

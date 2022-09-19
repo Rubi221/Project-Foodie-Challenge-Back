@@ -14,6 +14,9 @@ import java.util.List;
 @Repository
 public interface IDetalleInscripcionRepository extends JpaRepository<DetalleInscripcion, Long> {
 
+    @Query("SELECT d " +
+            "FROM DetalleInscripcion d " +
+            "WHERE d.idInscripcionReto = :idInscripcion ")
     DetalleInscripcion findByIdInscripcionReto(Long idInscripcion);
 
     @Query("SELECT d " +

@@ -21,6 +21,7 @@ public class PublicacionDTO {
 
     private Long idUsuario;
     private String nombreUsuario;
+    private String fotoUsuario;
 
     @JsonFormat(pattern = "dd-MM-yyyy", timezone = "America/Bogota")
     private Date fecha;

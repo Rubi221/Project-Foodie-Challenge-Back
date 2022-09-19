@@ -18,6 +18,7 @@ public interface DetalleInscripcionMapper {
 
     //Entity to DTO
     @Mapping(target = "nombreUsuario", source = "inscripcionReto.usuario.nombre")
+    @Mapping(target = "fotoUsuario", source = "inscripcionReto.usuario.foto")
     DetalleInscripcionDTO toDetalleInscripcionDTO(DetalleInscripcion detalleInscripcion);
 
 

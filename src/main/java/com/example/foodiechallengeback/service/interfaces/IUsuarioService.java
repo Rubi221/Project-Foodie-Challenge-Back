@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Service
 public interface IUsuarioService {
-    List<Usuario> findAllUsuario();
+    Usuario findById(Long idUsuario);
 
     @Transactional
     Usuario createUsuario(UsuarioDTO usuarioDTO) throws Exception;

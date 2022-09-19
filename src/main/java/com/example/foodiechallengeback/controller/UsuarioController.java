@@ -26,9 +26,9 @@ public class UsuarioController {
     private IUsuarioService usuarioService;
 
     //Obtiene la lista de todos los usuarios
-    @GetMapping("/all")
-    public ResponseEntity<List<UsuarioDTO>> getAllUsuarios(){
-        return new ResponseEntity<>(this.usuarioService.findAllUsuario().stream().map(UsuarioMapper.INSTANCE::toUsuarioDTO).collect(Collectors.toList()), HttpStatus.OK);
+    @GetMapping("/findById")
+    public ResponseEntity<UsuarioDTO> findById(@RequestParam(name = "idUsuario")Long idUsuario){
+        return new ResponseEntity<>(UsuarioMapper.INSTANCE.toUsuarioDTO(this.usuarioService.findById(idUsuario)), HttpStatus.OK);
     }
 
     //Hace el registro de un nuevo usuario
