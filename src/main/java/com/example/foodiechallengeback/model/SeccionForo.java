@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @RequiredArgsConstructor
-@Table(name = "Seccion_Foro")
+@Table(name = "seccion_foro")
 public class SeccionForo {
 
     //Atributos

@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @RequiredArgsConstructor
-@Table(name = "Puntaje_Inscripcion")
+@Table(name = "puntaje_inscripcion")
 public class PuntajeInscripcion {
 
     //Atributos

@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 @Data
 @RequiredArgsConstructor
-@Table(name = "Publicacion_Foro")
+@Table(name = "publicacion_foro")
 public class Publicacion {
 
     //Atributos
