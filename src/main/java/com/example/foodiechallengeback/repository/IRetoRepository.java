@@ -16,7 +16,8 @@ public interface IRetoRepository extends JpaRepository<Reto, Long> {
     @Query("SELECT r " +
             "FROM Reto r " +
             "WHERE SYSDATE()  >= r.fechaInicio " +
-            "AND SYSDATE() <= r.fechaFin ")
+            "AND SYSDATE() <= r.fechaFin " +
+            "ORDER BY r.fechaInicio desc")
     List<Reto> findAllAbiertas();
 
     List<Reto> findAllByIdCategoria(Long idCategoria);
@@ -24,7 +25,8 @@ public interface IRetoRepository extends JpaRepository<Reto, Long> {
     @Query("SELECT r " +
             "FROM Reto r " +
             "WHERE r.idUsuario =:idUsuario " +
-            "AND SYSDATE() <= r.fechaFin ")
+            "AND SYSDATE() <= r.fechaFin " +
+            "ORDER BY r.fechaInicio desc ")
     List<Reto> findAllCreadosPor(Long idUsuario);
 
     @Query("SELECT r " +

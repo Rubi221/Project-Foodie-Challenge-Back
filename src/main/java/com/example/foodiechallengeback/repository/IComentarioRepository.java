@@ -12,7 +12,8 @@ public interface IComentarioRepository extends JpaRepository<Comentario, Long> {
     @Query("SELECT m " +
             "FROM Comentario m " +
             "WHERE m.idPublicacion = :idPublicacion " +
-            "OR m.idReto = :idReto ")
+            "OR m.idReto = :idReto " +
+            "ORDER BY m.fecha DESC ")
     List<Comentario> findAllByIdPubliacionOrIdReto(Long idPublicacion, Long idReto);
 
     @Query("SELECT m " +

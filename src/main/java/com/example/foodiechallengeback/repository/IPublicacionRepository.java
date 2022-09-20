@@ -13,6 +13,7 @@ public interface IPublicacionRepository  extends JpaRepository<Publicacion, Long
     @Query("SELECT p " +
             "FROM Publicacion p " +
             "WHERE p.idSeccionForo = :idSeccion " +
-            "OR p.idUsuario = :idUsuario")
+            "OR p.idUsuario = :idUsuario " +
+            "ORDER BY p.fecha desc ")
     List<Publicacion> findAllByIdSeccionOrIdUsuario(Long idSeccion, Long idUsuario);
 }

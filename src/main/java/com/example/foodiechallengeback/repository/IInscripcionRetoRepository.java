@@ -28,6 +28,7 @@ public interface IInscripcionRetoRepository extends JpaRepository<InscripcionRet
             "FROM Reto r, InscripcionReto i " +
             "WHERE i.idReto = r.id  " +
             "AND i.idUsuario =:idUsuario " +
-            "AND SYSDATE() <= r.fechaFin ")
+            "AND SYSDATE() <= r.fechaFin " +
+            "ORDER BY r.fechaInicio desc ")
     List<Reto> findAllInscritos(Long idUsuario);
 }
