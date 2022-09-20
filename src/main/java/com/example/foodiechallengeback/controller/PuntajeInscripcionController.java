@@ -26,14 +26,17 @@ public class PuntajeInscripcionController {
         return new ResponseEntity<>(this.puntajeInscripcionService.findAllPuntajes().stream().map(PuntajeInscripcionMapper.INSTANCE::toPuntajeInscripcionDTO).collect(Collectors.toList()), HttpStatus.OK);
     }
 
+    //Valida si se califico una inscripcion
+    @GetMapping("/validateCalifica")
+    public ResponseEntity<Boolean> validateCalifica(@RequestParam(name = "idUsuario")Long idUsuario,
+                                                    @RequestParam(name = "idDetalle")Long idDetalle){
+        return new ResponseEntity<>(this.puntajeInscripcionService.validateCalifica(idUsuario,idDetalle), HttpStatus.OK);
+    }
+
     //Crea un Puntaje de inscripcion
     @PostMapping
     public ResponseEntity<?> createPuntaje(@Validated @RequestBody PuntajeInscripcionDTO puntajeInscripcionDTO){
-        try{
-            return new ResponseEntity<>(PuntajeInscripcionMapper.INSTANCE.toPuntajeInscripcionDTO(this.puntajeInscripcionService.createPuntaje(puntajeInscripcionDTO)), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>("No se pudo puntuar", HttpStatus.EXPECTATION_FAILED);
-        }
+        return new ResponseEntity<>(PuntajeInscripcionMapper.INSTANCE.toPuntajeInscripcionDTO(this.puntajeInscripcionService.createPuntaje(puntajeInscripcionDTO)), HttpStatus.CREATED);
     }
 
     //Inyecciones

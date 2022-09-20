@@ -11,7 +11,7 @@ public class PuntajeInscripcionDTO {
 
     private Long id;
 
-    private Long idInscripcionReto;
+    private Long idDetalle;
 
     private Long idUsuario;
 

@@ -12,6 +12,9 @@ public interface IPuntajeInscripcionService {
 
     List<PuntajeInscripcion> findAllPuntajes();
 
+    //Valida si se califico una inscripcion
+    Boolean validateCalifica(Long idUsuario, Long idDetalle);
+
     @Transactional
     PuntajeInscripcion createPuntaje(PuntajeInscripcionDTO puntajeInscripcionDTO);
 }

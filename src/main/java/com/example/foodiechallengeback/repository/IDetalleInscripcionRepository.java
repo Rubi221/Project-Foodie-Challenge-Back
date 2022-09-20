@@ -23,4 +23,9 @@ public interface IDetalleInscripcionRepository extends JpaRepository<DetalleInsc
             "FROM DetalleInscripcion d " +
             "WHERE d.inscripcionReto.idReto = :idReto ")
     List<DetalleInscripcion> findAllDetallesByIdReto(Long idReto);
+
+    @Query("SELECT d.idInscripcionReto " +
+            "FROM DetalleInscripcion d " +
+            "WHERE d.id = :idDetalle ")
+    Long findIdInscripcionById(Long idDetalle);
 }

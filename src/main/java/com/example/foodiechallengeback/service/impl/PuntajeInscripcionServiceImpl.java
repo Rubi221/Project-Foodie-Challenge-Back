@@ -25,6 +25,17 @@ public class PuntajeInscripcionServiceImpl implements IPuntajeInscripcionService
         return this.puntajeInscripcionRepository.findAll();
     }
 
+    //Valida si se califico una inscripcion
+    @Override
+    public Boolean validateCalifica(Long idUsuario, Long idDetalle){
+        Boolean califica = false;
+        var puntaje = this.puntajeInscripcionRepository.findByIdDetalle(idDetalle, idUsuario);
+        if(puntaje != null){
+            califica = true;
+        }
+        return califica;
+    }
+
 
     //Puntua una inscripcion
     @Override
@@ -32,8 +43,8 @@ public class PuntajeInscripcionServiceImpl implements IPuntajeInscripcionService
     public PuntajeInscripcion createPuntaje(PuntajeInscripcionDTO puntajeInscripcionDTO){
         var puntaje = PuntajeInscripcionMapper.INSTANCE.toPuntajeInscripcion(puntajeInscripcionDTO);
         var puntajeBD = this.puntajeInscripcionRepository.save(puntaje);
-        var puntuacionFinal = this.puntajeInscripcionRepository.sumAllPuntajes(puntajeBD.getIdInscripcionReto());
-        var detalle = this.detalleInscripcionRepository.findByIdInscripcionReto(puntajeBD.getIdInscripcionReto());
+        var puntuacionFinal = this.puntajeInscripcionRepository.sumAllPuntajes(puntajeBD.getIdDetalle());
+        var detalle = this.detalleInscripcionRepository.findById(puntajeBD.getIdDetalle()).orElse(null);
         detalle.setCalificacionFinal(puntuacionFinal);
         this.detalleInscripcionRepository.save(detalle);
         return puntajeBD;

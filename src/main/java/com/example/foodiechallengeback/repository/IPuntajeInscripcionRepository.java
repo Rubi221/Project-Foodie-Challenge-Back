@@ -10,6 +10,12 @@ public interface IPuntajeInscripcionRepository extends JpaRepository<PuntajeInsc
 
     @Query("SELECT AVG(p.puntaje) " +
             "FROM PuntajeInscripcion p " +
-            "WHERE p.inscripcionReto = :idInscripcion ")
-    Long sumAllPuntajes(Long idInscripcion);
+            "WHERE p.idDetalle = :idDetalle ")
+    Long sumAllPuntajes(Long idDetalle);
+
+    @Query("SELECT p " +
+            "FROM PuntajeInscripcion p " +
+            "WHERE p.idDetalle = :idDetalle " +
+            "AND p.idUsuario =:idUsuario ")
+    PuntajeInscripcion findByIdDetalle(Long idDetalle, Long idUsuario);
 }
