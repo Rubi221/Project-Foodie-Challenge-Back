@@ -23,7 +23,8 @@ public interface IRetoRepository extends JpaRepository<Reto, Long> {
 
     @Query("SELECT r " +
             "FROM Reto r " +
-            "WHERE r.idUsuario =:idUsuario ")
+            "WHERE r.idUsuario =:idUsuario " +
+            "AND SYSDATE() <= r.fechaFin ")
     List<Reto> findAllCreadosPor(Long idUsuario);
 
     @Query("SELECT r " +
