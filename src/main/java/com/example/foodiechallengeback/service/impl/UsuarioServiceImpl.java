@@ -79,7 +79,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
     //Valida que el username ingresado no este en uso
     private void validateUsuarioRepetido(Usuario usuario) throws Exception {
         var registro = this.usuarioRepository.validateUsuarioRepetido(usuario.getUsername());
-        if (registro != null) {
+        if ((registro != null) && (registro.getId() != usuario.getId())) {
             throw new Exception("Este nombre de usuario ya esta en uso");
         }
     }
