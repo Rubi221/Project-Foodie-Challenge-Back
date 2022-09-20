@@ -6,6 +6,7 @@ import com.example.foodiechallengeback.model.Receta;
 import com.example.foodiechallengeback.repository.IRecetaRepository;
 import com.example.foodiechallengeback.service.interfaces.IRecetaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +24,7 @@ public class RecetaServiceImpl implements IRecetaService {
     // Obtiene todas las recetas segun idTipoReceta
     @Override
     public List<Receta> obtenerAllReceta(){
-        return this.recetaRepository.findAll();
+        return this.recetaRepository.findAll(Sort.by(Sort.Direction.DESC, "fecha"));
     }
 
     // Obtiene una receta por id
